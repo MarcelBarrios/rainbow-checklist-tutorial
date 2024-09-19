@@ -6,6 +6,7 @@ def create(item):
 
 #READ
 def read(index):
+    print(checklist[index])
     return checklist[index]
 
 #UPDATE
@@ -35,12 +36,12 @@ def user_input(prompt):
 def select(function_code):
     # Create item
     if function_code == "C":
-        input_item = user_input("Input item:")
+        input_item = user_input("Input item: ")
         create(input_item)
 
     # Read item
     elif function_code == "R":
-        item_index = user_input("Index Number?")
+        item_index = int(user_input("Index Number?: "))
 
         # Remember that item_index must actually exist or our program will crash.
         read(item_index)
@@ -48,10 +49,15 @@ def select(function_code):
     # Print all items
     elif function_code == "P":
         list_all_items()
+
+    elif function_code == "Q":
+        exit()
     
     # Catch all
     else:
         print("Unknown Option")
+
+    return True
     
 def test():
     # Your tests here
@@ -82,3 +88,9 @@ def test():
     user_value = user_input("Please, Enter a value:")
     int(user_value)
     print(user_value)
+
+running = True
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list, P to display list, and Q to quit (input in uppercase): ")
+    running = select(selection)
